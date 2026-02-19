@@ -13,3 +13,41 @@ https://github.com/osmanof/DevOps-Intro/actions/runs/22086967301/job/63823700276
 ## Объяснение
 
 При создании файла (я так понял, что подходит любой `.yml`-файл в `.github/workflows`) запускается `Action`. Коммит называется триггером (trigger), который запускает выполнение команд из `.yml`-файла (jobs), выполняется это все на машине (runner). В `.yml`-файле есть такие штуки: `runner.os`, `job.status`. То есть можно обращаться к этим понятиям.
+
+# Ручной запуск
+
+В общем, интересное обобщение есть для любых событий `on` в yaml-файле. Оказывается можно указать событие не `push` (был указан пуш, поэтому я заходил в Actions и видел готовый запущенный workflow), а `workflow_dispatch`, и тогда я сам должен буду выполнить действие (свое диспетчерское), которое вызовет workflow. Можно указать согласно документации инпуты и их типы данных, но можно было и без них. Просто тупо вписать `workflow_dispatch` вместо `push`. Это я и сделал. И еще оказалось, что нужно пушить в `main`.
+
+## Информация
+
+OS: Linux (Arch: X64)
+Hardware Specifications
+CPU Info:
+CPU(s):                                  4
+Model name:                              AMD EPYC 7763 64-Core Processor
+Thread(s) per core:                      2
+NUMA node0 CPU(s):                       0-3
+
+Memory Info:
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       960Mi        13Gi        38Mi       1.8Gi        14Gi
+Swap:          3.0Gi          0B       3.0Gi
+
+Disk Space:
+/dev/root       145G   53G   92G  37% /
+Operating System Details
+Distributor ID:	Ubuntu
+Description:	Ubuntu 24.04.3 LTS
+Release:	24.04
+Codename:	noble
+Linux runnervmjduv7 6.14.0-1017-azure #17~24.04.1-Ubuntu SMP Mon Dec  1 20:10:50 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+Вот такие характеристики.
+
+## Сравнение
+
+Если событие `push`, то запуск автоматический, а если `workflow_dispatch`, то после нажатия на кнопку.
+
+## Анализ окружения
+
+Это окружение, предоставленное GitHub. На их компе установлен Arch. Ну там выше написано все)) не знаю, что ответить на этот вопрос, честно.
